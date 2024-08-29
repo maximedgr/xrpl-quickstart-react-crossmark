@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import sdk from "@crossmarkio/sdk";
+import { useWallet } from '../context/WalletContext';
 
 interface WalletConnectProps {
   onConnectionChange: (connected: boolean) => void;
@@ -8,6 +9,7 @@ interface WalletConnectProps {
 const WalletConnect: React.FC<WalletConnectProps> = ({ onConnectionChange }) => {
   const [isInstalled, setIsInstalled] = useState<boolean | null>(null);
   const [isConnected, setIsConnected] = useState<boolean | null>(null);
+  const { setAddress } = useWallet();
 
   const checkWalletInstallation = () => {
     const installed = sdk.sync.isInstalled();
@@ -30,11 +32,12 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ onConnectionChange }) => 
 
   const connectWallet = async () => {
     try {
-      let id = await sdk.sync.signIn();
-      if (id) {
+      let response = await sdk.async.signInAndWait();
+      if (response.response.data.address) {
         setIsConnected(true);
         onConnectionChange(true);
-        console.log("Connected with ID:", id);
+        setAddress(response.response.data.address);
+        console.log("Connected with address:", response.response.data.address);
       } else {
         setIsConnected(false);
         onConnectionChange(false);

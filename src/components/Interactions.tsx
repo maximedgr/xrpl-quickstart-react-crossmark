@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import sdk from "@crossmarkio/sdk";
-
+import { useWallet } from '../context/WalletContext';
 const Interactions: React.FC = () => {
   const [signInResponse, setSignInResponse] = useState("");
   const [sessionUserResponse, setSessionUserResponse] = useState("");
   const [signTransactionTxblob, setSignTransactionTxblob] = useState("");
   const [submitTransactionResponse, setSubmitTransactionResponse] = useState("");
 
-  const signIn = async () => {
-    try {
-      let address = (await sdk.async.signInAndWait()).response.data.address;
-      setSignInResponse(address);
-    } catch (error) {
-      console.error("Error during sign in:", error);
-      setSignInResponse("Error occurred during sign in");
-    }
-  };
+  const { address } = useWallet();
 
   const getUserSession = async () => {
     let id = sdk.session.user?.id;
@@ -25,9 +17,10 @@ const Interactions: React.FC = () => {
 
   const signTransaction = async () => {
     try {
+        console.log("signing transaction for:", address);
       let resp = await sdk.async.signAndWait({
         TransactionType: "Payment",
-        Account: signInResponse,
+        Account: address,
         Destination: "rK8jihXBZCFWZqX95SET3CCi1WdRgZQwex", // Add any destination address here
         Amount: "11000000", // XRP in drops
       });
@@ -51,7 +44,6 @@ const Interactions: React.FC = () => {
   return (
     <div className="interactions-container">
       <h2>Interactions</h2>
-      
       <div className="interaction-section">
         <button onClick={getUserSession} className="interaction-button">Get Session</button>
         <textarea
