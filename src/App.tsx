@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import sdk from "@crossmarkio/sdk";
+import Header from './components/Header';
+import DocumentationCard from './components/DocumentationCard';
+import WalletConnect from './components/WalletConnect';
 
 function App() {
+  const [isInstalled, setIsInstalled] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const installed = sdk.sync.isInstalled();
+    setIsInstalled(installed ?? null);
+  }, []);
+
+  const checkWallet = () => {
+    const walletInstalled = sdk.sync.isInstalled();
+    setIsInstalled(walletInstalled ?? false);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="landing-page">
+        <WalletConnect />
+        <Header />
+        <div className="card-container">
+          <DocumentationCard />
+        </div>
+      </div>
     </div>
   );
 }
