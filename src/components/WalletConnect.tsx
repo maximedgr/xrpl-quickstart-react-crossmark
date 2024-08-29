@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import sdk from "@crossmarkio/sdk";
-import crossmarkLogo from '../assets/crossmark.png';
 
-const WalletConnect: React.FC = () => {
+interface WalletConnectProps {
+  onConnectionChange: (connected: boolean) => void;
+}
+
+const WalletConnect: React.FC<WalletConnectProps> = ({ onConnectionChange }) => {
   const [isInstalled, setIsInstalled] = useState<boolean | null>(null);
   const [isConnected, setIsConnected] = useState<boolean | null>(null);
 
@@ -30,13 +33,16 @@ const WalletConnect: React.FC = () => {
       let id = await sdk.sync.signIn();
       if (id) {
         setIsConnected(true);
+        onConnectionChange(true);
         console.log("Connected with ID:", id);
       } else {
         setIsConnected(false);
+        onConnectionChange(false);
       }
     } catch (error) {
       console.error("Failed to connect wallet:", error);
       setIsConnected(false);
+      onConnectionChange(false);
     }
   };
 
@@ -59,7 +65,6 @@ const WalletConnect: React.FC = () => {
         className={getButtonClass()}
         disabled={isConnected === true}
       >
-        <img src={crossmarkLogo} alt="Crossmark Logo" className="crossmark-logo" />
         {getButtonText()}
       </button>
     </div>

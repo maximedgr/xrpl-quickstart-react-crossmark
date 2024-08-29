@@ -60,26 +60,8 @@ p {
   transform: translateY(0);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header {
+  padding: 50px;
 }
 
 .App-link {
@@ -108,7 +90,7 @@ p {
   gap: 30px;
   margin-top: 40px;
   width: 100%;
-  max-width: 400px;
+  max-width: 90%;
 }
 
 .card {
@@ -194,4 +176,136 @@ p {
   width: 24px;
   height: 24px;
   margin-right: 8px;
+}
+
+.interactions-container {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  margin-top: 40px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 90%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.interactions-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.interaction-section {
+  margin: 20px;  
+  background-color: #3a3f4b;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.interaction-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  width: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.interaction-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.interaction-button:active {
+  transform: translateY(0);
+}
+
+.interaction-response {
+  width: 80%;
+  height: 100px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1rem;
+  resize: vertical;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+@media (max-width: 1200px) {
+  .interactions-container {
+    max-width: 90%;
+    padding: 30px;
+  }
+
+  .interactions-container h2 {
+    font-size: 2.2rem;
+  }
+
+  .interaction-section {
+    padding: 25px;
+  }
+
+  .interaction-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .interactions-container {
+    max-width: 95%;
+    padding: 20px;
+  }
+
+  .interactions-container h2 {
+    font-size: 2rem;
+  }
+
+  .interaction-section {
+    margin: 15px;  
+    padding: 20px;
+  }
+
+  .interaction-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .interaction-response {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .interactions-container {
+    padding: 15px;
+  }
+
+  .interactions-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .interaction-section {
+    margin: 10px;  
+    padding: 15px;
+  }
+
+  .interaction-button {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+
+  .interaction-response {
+    font-size: 0.9rem;
+  }
 }

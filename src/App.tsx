@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import sdk from "@crossmarkio/sdk";
 import Header from './components/Header';
 import DocumentationCard from './components/DocumentationCard';
 import WalletConnect from './components/WalletConnect';
+import Interactions from './components/Interactions';
 
 function App() {
-  const [isInstalled, setIsInstalled] = useState<boolean | null>(null);
+  const [isConnected, setIsConnected] = useState(false);
 
-  useEffect(() => {
-    const installed = sdk.sync.isInstalled();
-    setIsInstalled(installed ?? null);
-  }, []);
-
-  const checkWallet = () => {
-    const walletInstalled = sdk.sync.isInstalled();
-    setIsInstalled(walletInstalled ?? false);
+  const handleConnectionChange = (connected: boolean) => {
+    setIsConnected(connected);
   };
 
   return (
     <div className="App">
       <div className="landing-page">
-        <WalletConnect />
+        <WalletConnect onConnectionChange={handleConnectionChange} />
         <Header />
         <div className="card-container">
+          {isConnected && <Interactions />}
           <DocumentationCard />
         </div>
       </div>
