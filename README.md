@@ -50,7 +50,7 @@ To get started with this project, follow these steps:
 
 ## Usage
 
-1. Click on the "Connect Wallet" button to connect your Crossmark Browser Wallet.
+1. Click on the "Connect Wallet" button to connect your Crossmark Browser Wallet. If the wallet is not installed, it will prompt the user to install it, redirecting them to the Chrome Web Store and once installed, the wallet will be connected.
 2. Once connected, you'll see your account information and network details.
 3. Use the interaction buttons to perform various actions on the XRPL.
 4. Access the Crossmark SDK documentation for more detailed information on available features.
