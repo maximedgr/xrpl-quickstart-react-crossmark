@@ -1,46 +1,91 @@
-# Getting Started with Create React App
+# XRPL - Crossmark Browser Wallet - React Template
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project provides a rapid development template for building applications on the [XRP Ledger (XRPL)](https://xrpl.org) using the [Crossmark](https://crossmark.io) Browser Wallet and React. Designed as a quickstart solution, it's particularly useful for hackathons, prototypes, and developers looking to jumpstart their XRPL projects.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+1. **Wallet Connection**: Easily connect to the Crossmark Browser Wallet.
+2. **Account Information Display**: View your current XRPL address and network details.
+3. **Network Auto-update**: Automatically checks and updates network information every 5 seconds.
+4. **Interactions**:
+   - Get User Session
+   - Sign Transactions
+   - Submit Transactions
+5. **WalletContext**: Access user's address throughout your app after wallet sign-in.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To get started with this project, follow these steps:
 
-### `npm test`
+1. Clone the repository:
+   ```
+   git clone https://github.com/maximedgr/xrpl-react-crossmark-quickstart
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Navigate to the project directory:
+   ```
+   cd xrpl-crossmark-react-template
+   ```
 
-### `npm run build`
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+   or if you're using yarn:
+   ```
+   yarn install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Start the development server:
+   ```
+   npm start
+   ```
+   or with yarn:
+   ```
+   yarn start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. Open your browser and visit `http://localhost:3000` to view the application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+1. Click on the "Connect Wallet" button to connect your Crossmark Browser Wallet.
+2. Once connected, you'll see your account information and network details.
+3. Use the interaction buttons to perform various actions on the XRPL.
+4. Access the Crossmark SDK documentation for more detailed information on available features.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## WalletContext
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This template uses React's Context API to provide easy access to the user's wallet address throughout the application after sign-in. Here's how to use it in your components:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+import { useWallet } from './path/to/WalletContext';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+const MyComponent = () => {
+  const { address } = useWallet();
 
-## Learn More
+  return <div>Your XRPL address: {address}</div>;
+};
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The `WalletContext` provides:
+- `address`: The user's XRPL address after successful sign-in.
+- `setAddress`: A function to update the address (typically used internally by the WalletConnect component).  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Dependencies
+
+- React
+- TypeScript
+- Crossmark Browser Wallet SDK
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Credits
+
+Based on a template from [Crossmark](https://crossmark.io).
+You can find other templates on [Crossmark's GitHub](https://github.com/crossmarkio/starters/tree/core) for Next, Vue and Angular.
+
